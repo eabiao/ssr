@@ -18,7 +18,7 @@ resultList.forEach(async (item) => {
   });
 
   let data = {
-    "headers": await ssrResp.headers,
+    "headers": Object.fromEntries(ssrResp.headers.entries()),
     "body": await ssrResp.text()
   };
 
