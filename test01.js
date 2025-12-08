@@ -6,4 +6,4 @@ let listResp = await fetch(process.env.URL01, {
 });
 
 let resultList = await listResp.json();
-console.log(resultList, resultList);
+console.log(resultList);
