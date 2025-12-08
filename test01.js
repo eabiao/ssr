@@ -6,7 +6,7 @@ let listResp = await fetch(process.env.URL01, {
 
 let resultList = await listResp.json();
 
-async function process(item) {
+async function doItem(item) {
   console.log("uuid:", item.uuid);
   
   let ssrResp = await fetch(item.url, {
@@ -37,7 +37,7 @@ async function process(item) {
 }
 
 for(let item of resultList){
-  await process(item);
+  await doItem(item);
 }
 
 
