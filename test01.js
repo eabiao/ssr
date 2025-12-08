@@ -25,7 +25,7 @@ for(let item of resultList){
 
   let data = {
     uuid: item.uuid,
-    headers: Object.fromEntries(ssrResp.headers.entries()),
+    headers: Object.fromEntries(ssrResp1.headers.entries()),
     value1: await ssrResp1.text(),
     value2: await ssrResp2.text()
   };
