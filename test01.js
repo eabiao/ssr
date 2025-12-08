@@ -1,13 +1,12 @@
 let listResp = await fetch(process.env.URL01, {
-  method: 'POST',
   headers: {
-    'token': process.env.TOKEN
+    'user-agent': process.env.TOKEN
   }
 });
 
 let resultList = await listResp.json();
 
-resultList.forEach(async (item) => {
+async function process(item) {
   console.log("uuid:", item.uuid);
   
   let ssrResp = await fetch(item.url, {
@@ -29,10 +28,18 @@ resultList.forEach(async (item) => {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
-      'token': process.env.TOKEN
+      'user-agent': process.env.TOKEN
     },
     body: JSON.stringify(data)
   });
 
   console.log("uuid:", item.uuid, "done.\n");
-});
+}
+
+(async () => {
+  resultList.forEach(item) => {
+    await process(item);
+  });
+})();
+
+
