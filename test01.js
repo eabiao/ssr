@@ -8,6 +8,8 @@ let listResp = await fetch(process.env.URL01, {
 let resultList = await listResp.json();
 
 resultList.forEach(async (item) => {
+  console.log("uuid:", item.uuid);
+  
   let ssrResp = await fetch(item.url, {
     headers: {
       'Accept':'*/*',
@@ -15,8 +17,17 @@ resultList.forEach(async (item) => {
     }
   });
 
-  let ssrRespHeaders = await ssrResp.headers;
-  let ssrRespBody = await ssrResp.text();
+  await fetch(process.env.URL02, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'token': process.env.TOKEN
+    },
+    body: {
+      "headers": await ssrResp.headers,
+      "body": await ssrResp.text()
+    }
+  });
 
-  console.log(item.uuid, item.url, ssrRespHeaders, ssrRespBody);
+  console.log("uuid:", item.uuid, "done.\n");
 });
