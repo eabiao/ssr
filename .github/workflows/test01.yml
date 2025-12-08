@@ -10,3 +10,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
       - run: bun test01.js
+        env: 
+          URL01: ${{secrets.URL01}}
+          URL02: ${{secrets.URL02}}
+          TOKEN: ${{secrets.TOKEN}}
