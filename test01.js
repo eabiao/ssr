@@ -6,4 +6,20 @@ let listResp = await fetch(process.env.URL01, {
 });
 
 let resultList = await listResp.json();
-console.log(resultList);
+
+resultList.forEach(item=>{
+  let uuid = item.uuid;
+
+  let ssrResp = await fetch(item.url, {
+    method: 'POST',
+    headers: {
+      'Accept':'*/*',
+      'User-Agent':'clash-verge/v1.7.5'
+    }
+  });
+
+  let ssrRespHeaders = await ssrResp.headers;
+  let ssrRespBody = await ssrResp.text();
+
+  console.log(item.uuid, item.url, ssrRespHeaders, ssrRespBody);
+});
