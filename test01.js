@@ -7,9 +7,7 @@ let listResp = await fetch(process.env.URL01, {
 
 let resultList = await listResp.json();
 
-resultList.forEach(item=>{
-  let uuid = item.uuid;
-
+resultList.forEach(async (item) => {
   let ssrResp = await fetch(item.url, {
     method: 'POST',
     headers: {
