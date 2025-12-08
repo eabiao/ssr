@@ -18,8 +18,11 @@ resultList.forEach(async (item) => {
   });
 
   let data = {
-    "headers": Object.fromEntries(ssrResp.headers.entries()),
-    "body": await ssrResp.text()
+    uuid: item.uuid,
+    value: {
+      headers: Object.fromEntries(ssrResp.headers.entries()),
+      body: await ssrResp.text()
+    }
   };
 
   await fetch(process.env.URL02, {
@@ -28,10 +31,8 @@ resultList.forEach(async (item) => {
       'content-type': 'application/json',
       'token': process.env.TOKEN
     },
-    body: data
+    body: JSON.stringify(data)
   });
-
-  console.log("@@@@@post data", data , "--------------\n\n\n");
 
   console.log("uuid:", item.uuid, "done.\n");
 });
