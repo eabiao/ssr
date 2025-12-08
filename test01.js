@@ -37,7 +37,7 @@ async function process(item) {
 }
 
 (async () => {
-  resultList.forEach(item) => {
+  resultList.forEach(item => {
     await process(item);
   });
 })();
