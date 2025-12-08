@@ -36,10 +36,8 @@ async function process(item) {
   console.log("uuid:", item.uuid, "done.\n");
 }
 
-(async () => {
-  resultList.forEach(item => {
-    await process(item);
-  });
-})();
+for(let item of resultList){
+  await process(item);
+}
 
 
