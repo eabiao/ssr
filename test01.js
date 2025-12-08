@@ -9,7 +9,6 @@ let resultList = await listResp.json();
 
 resultList.forEach(async (item) => {
   let ssrResp = await fetch(item.url, {
-    method: 'POST',
     headers: {
       'Accept':'*/*',
       'User-Agent':'clash-verge/v1.7.5'
