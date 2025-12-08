@@ -8,8 +8,15 @@ let resultList = await listResp.json();
 
 for(let item of resultList){
   console.log("uuid:", item.uuid);
+
+  let ssrResp1 = await fetch(item.url, {
+    headers: {
+      'Accept':'*/*',
+      'User-Agent':'Shadowrocket/2678'
+    }
+  });
   
-  let ssrResp = await fetch(item.url, {
+  let ssrResp2 = await fetch(item.url, {
     headers: {
       'Accept':'*/*',
       'User-Agent':'clash-verge/v1.7.5'
@@ -18,10 +25,9 @@ for(let item of resultList){
 
   let data = {
     uuid: item.uuid,
-    value: {
-      headers: Object.fromEntries(ssrResp.headers.entries()),
-      body: await ssrResp.text()
-    }
+    headers: Object.fromEntries(ssrResp.headers.entries()),
+    value1: await ssrResp1.text(),
+    value2: await ssrResp2.text()
   };
 
   await fetch(process.env.URL02, {
