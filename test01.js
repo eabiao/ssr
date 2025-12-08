@@ -12,7 +12,7 @@ for(let item of resultList){
   let ssrResp1 = await fetch(item.url, {
     headers: {
       'Accept':'*/*',
-      'User-Agent':'Shadowrocket/2678'
+      'User-Agent':'Chrome/58.0.3029.110'
     }
   });
   
