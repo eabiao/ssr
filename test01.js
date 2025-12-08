@@ -17,22 +17,21 @@ resultList.forEach(async (item) => {
     }
   });
 
+  let data = {
+    "headers": await ssrResp.headers,
+    "body": await ssrResp.text()
+  };
+
   await fetch(process.env.URL02, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
       'token': process.env.TOKEN
     },
-    body: {
-      "headers": await ssrResp.headers,
-      "body": await ssrResp.text()
-    }
+    body: data
   });
 
-  console.log("@@@@@post data", {
-      "headers": await ssrResp.headers,
-      "body": await ssrResp.text()
-    }, "--------------\n\n\n");
+  console.log("@@@@@post data", data , "--------------\n\n\n");
 
   console.log("uuid:", item.uuid, "done.\n");
 });
