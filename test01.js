@@ -29,5 +29,10 @@ resultList.forEach(async (item) => {
     }
   });
 
+  console.log("@@@@@post data", {
+      "headers": await ssrResp.headers,
+      "body": await ssrResp.text()
+    }, "--------------\n\n\n");
+
   console.log("uuid:", item.uuid, "done.\n");
 });
