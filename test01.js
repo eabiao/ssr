@@ -12,7 +12,7 @@ for(let item of resultList){
   let ssrResp1 = await fetch(item.url, {
     headers: {
       'Accept':'*/*',
-      'User-Agent':'Chrome/58.0.3029.110'
+      'User-Agent':'Shadowrocket/2678 CFNetwork/3826.600.41 Darwin/24.6.0 iPhone14,7'
     }
   });
   
@@ -25,9 +25,14 @@ for(let item of resultList){
 
   let data = {
     uuid: item.uuid,
-    headers: Object.fromEntries(ssrResp1.headers.entries()),
-    value1: await ssrResp1.text(),
-    value2: await ssrResp2.text()
+    value1: {
+      headers: Object.fromEntries(ssrResp1.headers.entries()),
+      body: await ssrResp1.text()
+    },
+    value2: {
+      headers: Object.fromEntries(ssrResp2.headers.entries()),
+      body: await ssrResp2.text()
+    }
   };
 
   await fetch(process.env.URL02, {
