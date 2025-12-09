@@ -7,7 +7,6 @@ let listResp = await fetch(process.env.URL01, {
 let resultList = await listResp.json();
 
 for(let item of resultList){
-  
   console.log("pull", item.uuid);
   
   let ssrResp = await fetch(item.url, {
