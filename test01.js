@@ -7,14 +7,17 @@ let listResp = await fetch(process.env.URL01, {
 let resultList = await listResp.json();
 
 for(let item of resultList){
-  console.log("uuid:", item.uuid);
-
+  
+  console.log("pull", item.uuid);
+  
   let ssrResp = await fetch(item.url, {
     headers: {
       'Accept':'*/*',
       'User-Agent':'clash-verge/v1.7.5'
     }
   });
+  
+  console.log("pull", item.uuid, "done.\n");
 
   let data = {
     uuid: item.uuid,
@@ -24,6 +27,7 @@ for(let item of resultList){
     }
   };
 
+  console.log("push", item.uuid);
   await fetch(process.env.URL02, {
     method: 'POST',
     headers: {
@@ -33,7 +37,7 @@ for(let item of resultList){
     body: JSON.stringify(data)
   });
 
-  console.log("uuid:", item.uuid, "done.\n");
+  console.log("push", item.uuid, "done.\n");
 }
 
 
