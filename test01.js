@@ -19,7 +19,7 @@ for(let item of resultList){
   let data = {
     uuid: item.uuid,
     value: {
-      headers: {"subscription-userinfo": ssrResp.headers.get("subscription-userinfo")}
+      headers: {"subscription-userinfo": ssrResp.headers.get("subscription-userinfo")},
       body: await ssrResp.text()
     }
   };
